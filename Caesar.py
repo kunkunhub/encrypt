@@ -39,7 +39,7 @@ def encrypt(key: str, m: str):
     # 加密功能核心
     ans = ""
     for i in range(0, len(m)):  # 遍历明文
-        ans += ch(od(m[i])+od(key[i]))    # 最后再加i增加破解难度
+        ans += ch(od(m[i])+od(key[i])+i)    # 最后再加i增加破解难度
     
     return ans
 
@@ -56,7 +56,7 @@ def decrypt(key: str, m: str)->str:
     # 加密功能核心
     ans = ""
     for i in range(0, len(m)):  # 遍历密文
-        ans += ch(od(m[i])-od(key[i]))
+        ans += ch(od(m[i])-od(key[i])-i)
     
     return ans
 
