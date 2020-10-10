@@ -1,5 +1,0 @@
-flask
-flask_debugtoolbar
-flask_caching
-flask_socketio
-eventlet

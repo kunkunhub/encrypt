@@ -2,7 +2,9 @@
 凯撒加密
 """
 
+from random import randint
 import sys
+import random
 
 # 加密依据的字符串
 s = """ !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"""
@@ -32,6 +34,7 @@ def encrypt(key: str, m: str):
     传入密钥和明文，转换成密文
     """
     # 延长密钥，方便操作
+    random.seed(key)
     tmp = key
     while len(key) < len(m):
         key += tmp
@@ -39,7 +42,7 @@ def encrypt(key: str, m: str):
     # 加密功能核心
     ans = ""
     for i in range(0, len(m)):  # 遍历明文
-        ans += ch(od(m[i])+od(key[i])+i)    # 最后再加i增加破解难度
+        ans += ch(od(m[i])+od(key[i])+i+random.randint(1, 1024))    # 最后再加i增加破解难度
     
     return ans
 
@@ -52,11 +55,12 @@ def decrypt(key: str, m: str)->str:
     tmp = key
     while len(key) < len(m):
         key += tmp
+    random.seed(key)
     
     # 加密功能核心
     ans = ""
     for i in range(0, len(m)):  # 遍历密文
-        ans += ch(od(m[i])-od(key[i])-i)
+        ans += ch(od(m[i])-od(key[i])-i-randint(1, 1024))
     
     return ans
 
