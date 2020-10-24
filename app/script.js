@@ -34,5 +34,8 @@ function decrypt(key, m) {
 function m() {
     var input = document.getElementById('input');
     var something = document.getElementById('something');
-    something.innerHTML = "<div id='something'>" + (encrypt("abc", input.value)) + "</div>";
+    something.innerHTML = "<div id='something'>" + 
+    "加密结果："+ (encrypt("abc", input.value)) + "<br>" + 
+    "解密结果：" + (decrypt('abc', input.value))
+     + "</div>";
 }
