@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+#coding=utf-8
+
 """
 凯撒加密
 """
@@ -8,25 +11,19 @@ import sys
 s = """ !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~"""
 
 def ch(x: int)->str:
-    """
-    替代内置函数chr实现更灵活的控制。
-    """
     return s[x%len(s)]  # 防止越界
 
 def od(c: str)->int:
-    """
-    替代内置函数ord实现更灵活的控制。
-    """
     return s.find(c)
 
 def check(x: str)->bool:
-    """检查字符串x的值是否合法"""
+    """检查字符串x的值是否合法，合法返回None"""
     if x == None:
-        return
+        return None
     for i in x:
         if i not in s:
-            print(f"输入不合法：{i}")
-            sys.exit(0)
+            return (i, x.index(i))
+    return None
 
 def encrypt(key: str, m: str):
     """
@@ -65,7 +62,8 @@ def decrypt(key: str, m: str)->str:
 if __name__ == "__main__":
     key = input("请输入密钥：")
     m = input("请输入明文：")
-    check(key)
-    check(m)
+    if check(key) or check(m):
+        print("有不支持加密的字符")
+        sys.exit(1)
     print("加密结果:\n", encrypt(key, m))
     print("解密结果:\n", decrypt(key, m))
