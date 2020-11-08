@@ -1,1 +1,0 @@
-"../python382/pythonw.exe" -m http.server 5000 && chrome --app=127.0.0.1:5000
